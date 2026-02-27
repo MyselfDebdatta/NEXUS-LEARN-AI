@@ -2,7 +2,7 @@
 
 NEXUS-LEARN is a cloud-native, adaptive learning platform built to improve student outcomes while reducing institutional overhead. It combines real-time learner profiling, AI-assisted personalization, and an administrative command center in a single React + Firebase application.
 
-## LIVE WEBSITE URL : 
+## LIVE WEBSITE URL : https://project-nexsus-learn.vercel.app/
 
 ## Executive Overview
 
@@ -56,18 +56,93 @@ Academic risk and institutional visibility engine.
 - Factor-level risk contributors.
 - Cohort-level summaries for advisor/admin review.
 
-## Screenshots
+## 📸 Screenshots
 
-Add your product screenshots in `docs/images/` and update filenames as needed.
+<p align="center">
+<table>
+  <tr>
+    <td align="center">
+      <img src="img/home.png" width="420" alt="Home 1" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/home2.png" width="420" alt="Home 2" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/home3.png" width="420" alt="Home 3" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/home4.png" width="420" alt="Home 4" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/login.png" width="420" alt="Login" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/signup.png" width="420" alt="Sign Up 1" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/signup2.png" width="420" alt="Sign Up 2" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/signup3.png" width="420" alt="Sign Up 3" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/signup4.png" width="420" alt="Sign Up 4" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/user.png" width="420" alt="Dashboard 1" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/user2.png" width="420" alt="Dashboard 2" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/user3.png" width="420" alt="Dashboard 3" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/user4.png" width="420" alt="Dashboard 4" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/user5.png" width="420" alt="Dashboard 5" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/user6.png" width="420" alt="Dashboard 6" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/user7.png" width="420" alt="Dashboard 7" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/user8.png" width="420" alt="Dashboard 8" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/admin.png" width="420" alt="Admin 1" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="img/admin2.png" width="420" alt="Admin 2" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+    <td align="center">
+      <img src="img/admin3.png" width="420" alt="Admin 3" style="border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:8px;" />
+    </td>
+  </tr>
+</table>
+</p>
 
-### Landing Experience
-![NEXUS-LEARN Landing](docs/images/landing.png)
-
-### Student Dashboard
-![NEXUS-LEARN Student Dashboard](docs/images/student-dashboard.png)
-
-### Admin Control Panel
-![NEXUS-LEARN Admin Panel](docs/images/admin-panel.png)
 
 ## What Is Implemented Today
 
@@ -224,7 +299,7 @@ npm run build
 
 - Move admin credentials out of source code and into secure auth/role management before production.
 - Rotate any exposed API keys immediately if they were committed.
-- Add `.env` to `.gitignore` (current config ignores `.env.*` variants but not base `.env`).
+- `.env` is gitignored — never commit it. Use `.env.example` as a reference template.
 - Enforce Firebase Security Rules for least-privilege access.
 
 ## Deployment
@@ -244,4 +319,21 @@ NEXUS-LEARN can be deployed as a static React bundle with managed backend servic
 
 ## License
 
-No license file is currently present in this repository. Add a `LICENSE` file before open-source distribution.
+This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Rohit Jain.
+
+## Author
+
+Rohit Jain  
+LinkedIn: https://www.linkedin.com/in/546-rohit-jain
+
+Debdatta Panda
+LinkedIn: https://www.linkedin.com/in/myself-debdatta-194a822b1
+
+Soumyasri Mohapatra
+LinkedIn: https://www.linkedin.com/in/soumyasri-mohapatra-99211625b
+
+Ritisha Sahoo
+LinkedIn: https://www.linkedin.com/in/ritisha-sahoo-67a046364
+
+Sahil Kumar sahoo
+LinkedIn: https://www.linkedin.com/in/sahil-kumar-sahoo-4055b7368
