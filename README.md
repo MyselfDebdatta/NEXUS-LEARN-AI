@@ -160,13 +160,15 @@ Academic risk and institutional visibility engine.
   - profile edit/delete flows,
   - recent activity view.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- Frontend: React 19, React DOM, Create React App (`react-scripts`)
-- Data/Auth: Firebase Auth + Cloud Firestore
-- AI: Gemini 2.5 Flash API (optional but supported)
-- Testing: React Testing Library + Jest DOM
-- Styling: In-component design system + injected global CSS tokens
+| Category             | Technologies                                      |
+|----------------------|---------------------------------------------------|
+| 💻 **Frontend**      | React 19, React DOM, Create React App (`react-scripts`)|
+| ⚙️ **Data/Auth**       | Firebase Auth + Cloud Firestore                |
+| 🛢️ **AI**      | Gemini 2.5 Flash API (optional but supported)                                          |
+| 🛢️ **Testing**      | React Testing Library + Jest DOM                                           |
+| ☁️ **Styling**    | In-component design system + injected global CSS tokens               |
 
 ## Architecture (High Level)
 
