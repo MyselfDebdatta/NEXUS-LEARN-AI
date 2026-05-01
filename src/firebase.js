@@ -56,7 +56,12 @@ const userRef = (email) => doc(db, "users", email.toLowerCase());
  * Call after sign-up and after every profile update.
  */
 export async function saveUser(userData) {
-    await setDoc(userRef(userData.email), userData, { merge: true });
+    try {
+        await setDoc(userRef(userData.email), userData, { merge: true });
+    } catch (e) {
+        console.warn("Firestore saveUser failed, falling back to localStorage:", e);
+        localStorage.setItem(`nx_user:${userData.email.toLowerCase()}`, JSON.stringify(userData));
+    }
 }
 
 /**
@@ -64,8 +69,14 @@ export async function saveUser(userData) {
  * Returns the plain JS object, or null if not found.
  */
 export async function getUser(email) {
-    const snap = await getDoc(userRef(email));
-    return snap.exists() ? snap.data() : null;
+    try {
+        const snap = await getDoc(userRef(email));
+        if (snap.exists()) return snap.data();
+    } catch (e) {
+        console.warn("Firestore getUser failed, falling back to localStorage:", e);
+    }
+    const local = localStorage.getItem(`nx_user:${email.toLowerCase()}`);
+    return local ? JSON.parse(local) : null;
 }
 
 /**
@@ -73,7 +84,12 @@ export async function getUser(email) {
  * (Does NOT delete the Firebase Auth account — requires Admin SDK for that.)
  */
 export async function deleteUserDoc(email) {
-    await deleteDoc(userRef(email));
+    try {
+        await deleteDoc(userRef(email));
+    } catch (e) {
+        console.warn("Firestore deleteUserDoc failed, falling back to localStorage:", e);
+    }
+    localStorage.removeItem(`nx_user:${email.toLowerCase()}`);
 }
 
 /**
@@ -81,6 +97,25 @@ export async function deleteUserDoc(email) {
  * Used by the AdminPanel to list all students.
  */
 export async function getAllUsers() {
-    const snap = await getDocs(collection(db, "users"));
-    return snap.docs.map((d) => d.data());
+    let users = [];
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        users = snap.docs.map((d) => d.data());
+    } catch (e) {
+        console.warn("Firestore getAllUsers failed, falling back to localStorage:", e);
+    }
+    
+    // Also include any users saved ONLY in local storage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith("nx_user:")) {
+            try {
+                const u = JSON.parse(localStorage.getItem(key));
+                if (!users.some(existing => existing.email === u.email)) {
+                    users.push(u);
+                }
+            } catch (err) {}
+        }
+    }
+    return users;
 }

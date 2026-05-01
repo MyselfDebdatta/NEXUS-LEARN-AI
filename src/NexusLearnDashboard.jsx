@@ -1026,7 +1026,16 @@ function SignUpScreen({ onDone, onBack }) {
   const submit = async () => {
     setLoading(true); setErr("");
     try {
-      await fbCreateUser(form.email.toLowerCase(), form.password);
+      try {
+        await fbCreateUser(form.email.toLowerCase(), form.password);
+      } catch (authErr) {
+        if (authErr.code === "auth/email-already-in-use") {
+          // If auth exists from a previously failed profile creation, sign in to continue
+          await fbSignIn(form.email.toLowerCase(), form.password);
+        } else {
+          throw authErr;
+        }
+      }
       const now = new Date().toISOString(), uid = `u_${Date.now()}`;
       const profile = { sleepHours: form.sleepHours, stressLevel: form.stressLevel, studyHoursPerDay: form.studyHoursPerDay, exercisePerWeek: form.exercisePerWeek, screenTimeHours: form.screenTimeHours, caffeine: form.caffeine, lastRestDays: form.lastRestDays, hydration: form.hydration, breakFrequency: form.breakFrequency, mentalHealthRating: form.mentalHealthRating, socialEngagement: form.socialEngagement, deadlineAnxiety: form.deadlineAnxiety, workingStatus: form.workingStatus, readingSpeed: form.readingSpeed, motivationLevel: form.motivationLevel, courseDifficulty: form.courseDifficulty, missedDeadlines: form.missedDeadlines, attendanceRate: form.attendanceRate, gpaLast: form.gpaLast };
       const u = { uid, email: form.email.toLowerCase(), fullName: form.fullName, cohort: form.cohort, studentId: form.studentId || uid.slice(-6).toUpperCase(), institution: form.institution || "", yearOfStudy: form.yearOfStudy, profile, createdAt: now, lastUpdated: now, loginHistory: [now] };
@@ -1035,6 +1044,7 @@ function SignUpScreen({ onDone, onBack }) {
     } catch (e) {
       const msg = e.code === "auth/email-already-in-use" ? "An account with this email already exists."
         : e.code === "auth/weak-password" ? "Password must be at least 6 characters."
+          : e.code === "auth/wrong-password" ? "This email is already registered but the password you entered is incorrect."
           : e.message || "Sign-up failed. Please try again.";
       setErr(msg); setLoading(false);
     }
